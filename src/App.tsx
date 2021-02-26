@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useContext, useState} from 'react';
+import Routes from './routes';
+import GlobalStyle from './styles/global';
+import Switch from 'react-switch';
+import { shade } from 'polished'
+import { ThemeContext, ThemeProvider } from 'styled-components'
+import { dark, light } from './theme';
+import {SW} from './styles/components/switch'
 
 function App() {
+  // const [theme, setTheme] = useState(light)
+
+  // function toggleTheme() {
+  //   setTheme(theme.title === 'light' ? dark : light )
+  // };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={dark}>
+      <Routes />
+      <GlobalStyle />
+      {/* <SW 
+        onChange={toggleTheme}
+        checked={theme.title === 'dark' ? true : false}
+        checkedIcon={false}
+        uncheckedIcon={false}
+        offColor={shade(0.15, theme.colors.primary)}
+        onColor={theme.colors.secundary}
+        style={{position: 'absolute', right: 10, top: 10}}
+      /> */}
+    </ThemeProvider>
   );
 }
 
